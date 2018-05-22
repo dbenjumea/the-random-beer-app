@@ -29,6 +29,11 @@ public class BeerResource {
     @Autowired
     private BeerService beerService;
 
+    @GetMapping
+    public String getHelloWorld() {
+        return "Hello World";
+    }
+
     @GetMapping(value = "/beers")
     public List<Beer> retrieveAllBeers() {
         List<Beer> list = beerRepository.findAll();
