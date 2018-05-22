@@ -11,11 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BeerService {
+public class BeerService implements IBeerService{
 
     @Autowired
     private BeerRepository beerRepository;
 
+    @Override
     public Optional<Beer> findById(long id) throws BeerNotFoundException {
         Optional<Beer> beer = beerRepository.findById(id);
         if(!beer.isPresent()) {
@@ -24,10 +25,12 @@ public class BeerService {
         return beer;
     }
 
+    @Override
     public void deleteById(long id) {
         beerRepository.deleteById(id);
     }
 
+    @Override
     public Beer save(Beer beer) throws BeerNotCreatedException {
         Optional<Beer> optionalBeer = Optional.of(beer);
         if(optionalBeer.isPresent())
@@ -36,6 +39,7 @@ public class BeerService {
             throw new BeerNotCreatedException();
     }
 
+    @Override
     public int countOfBeers() {
         List<Beer> beerList = beerRepository.findAll();
         return beerList.size();
