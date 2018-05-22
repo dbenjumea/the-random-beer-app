@@ -1,0 +1,9 @@
+# Version 3 is focused for Swarm mode --> Manage a cluster of Docker Engines natively, if you do not want to use Swarm mode then Version 2 is the correct --> https://github.com/docker/compose/issues/4513
+version: '2'
+services:
+  rest-api:
+    build: rest-api
+    mem_limit: 2048M
+    ports:
+         #  Machine port: Docker port
+         - "8080:8050"
