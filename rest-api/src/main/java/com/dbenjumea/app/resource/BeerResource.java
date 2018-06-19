@@ -56,14 +56,15 @@ public class BeerResource {
         beerService.deleteById(id);
     }
 
-    @PostMapping("/beers")
-    public ResponseEntity<Object> createBeer(@RequestBody Beer beer) throws BeerNotCreatedException {
+    @PostMapping("/beer/create")
+    public ResponseEntity<Beer> createBeer(@RequestBody Beer beer) throws BeerNotCreatedException {
         Beer savedBeer = beerService.save(beer);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedBeer.getId()).toUri();
 
-        return ResponseEntity.created(location).build();
+//        return ResponseEntity.ok(beer).created(location).build();
+        return ResponseEntity.ok(beer);
 
     }
 
